@@ -12,6 +12,9 @@ Listado de Telefonos
         <thead>
             <tr>
                 <th>Numero Telefonico</th>
+                <th>ver</th>
+                <th>editar</th>
+                <th>Operadora</th>
                 <th>Tipo</th>
                 <th>Estudiante</th>
             </tr>
@@ -20,6 +23,9 @@ Listado de Telefonos
         {% for n in NumeroTelefonico %}
         <tr>
             <td> {{n.telefono}} </td>
+            <td> <a href="{% url 'obtener_telefono' n.id %}">ver</a> </td>
+            <td> <a href="{% url 'editar_numero_telefonico' n.id %}">editar</a> </td>
+            <td> {{n.obtenerOperadora}} </td>
             <td> {{n.tipo}} </td>
             <td> {{n.estudiante}} </td>
         </tr>

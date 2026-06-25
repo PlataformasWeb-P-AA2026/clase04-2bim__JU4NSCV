@@ -114,16 +114,21 @@ def editar_numero_telefonico(request, id):
     """
     telefono = NumeroTelefonico.objects.get(pk=id)
     if request.method=='POST':
-        formulario = NumeroTelefonicoForm(request.POST, instance=telefono)
+        formulario = NumeroTelefonicoEditForm(request.POST, instance=telefono)
         print(formulario.errors)
         if formulario.is_valid():
             formulario.save()
             return redirect(index)
     else:
-        formulario = NumeroTelefonicoForm(instance=telefono)
+        formulario = NumeroTelefonicoEditForm(instance=telefono)
     diccionario = {'formulario': formulario}
 
-    return render(request, 'crearNumeroTelefonico.html', diccionario)
+    return render(request, 'editarNumeroTelefonico.html', diccionario)
+
+def obtener_telefono(request, id):
+    telefono = NumeroTelefonico.objects.get(pk=id)
+    informacion_template = {'telefono': telefono}
+    return render(request, 'obtenerTelefono.html', informacion_template)
 
 def crear_numero_telefonico_estudiante(request, id):
     """

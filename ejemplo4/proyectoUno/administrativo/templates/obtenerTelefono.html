@@ -1,0 +1,13 @@
+{% extends "master.html" %}
+
+{% block content %}
+
+<h3>Datos de Telefono</h3>
+
+<p><b>Numero:</b> {{telefono.telefono}}</p>
+<p><b>Operadora:</b> {{telefono.obtenerOperadora}}</p>
+<p><b>Tipo:</b> {{telefono.tipo}}</p>
+<p><b>Estudiante:</b> {{telefono.estudiante.nombre}}</p>
+
+<br />
+{% endblock %}

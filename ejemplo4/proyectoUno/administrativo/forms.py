@@ -28,3 +28,13 @@ class NumeroTelefonicoEstudianteForm(ModelForm):
     class Meta:
         model = NumeroTelefonico
         fields = ['telefono', 'tipo', 'estudiante']
+
+class NumeroTelefonicoEditForm(ModelForm):
+    class Meta:
+        model = NumeroTelefonico
+        fields = ['telefono', 'tipo', 'estudiante']
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["estudiante"].widget = forms.widgets.HiddenInput()
+        
