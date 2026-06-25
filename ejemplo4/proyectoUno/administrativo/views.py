@@ -28,6 +28,12 @@ def index(request):
     return render(request, 'index.html', informacion_template)
 
 
+def listado_telefonos(request):
+    numeros_telefonicos = NumeroTelefonico.objects.all()
+    informacion_template = {'NumeroTelefonico': numeros_telefonicos}
+    return render(request, 'listadoTelefonos.html', informacion_template)
+    
+
 def obtener_estudiante(request, id):
     """
         Listar los registros del modelo Estudiante,
