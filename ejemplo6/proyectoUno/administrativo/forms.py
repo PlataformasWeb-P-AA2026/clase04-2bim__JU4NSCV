@@ -52,6 +52,12 @@ class NumeroTelefonicoForm(ModelForm):
     class Meta:
         model = NumeroTelefonico
         fields = ['telefono', 'tipo', 'estudiante']
+        labels = {
+            'telefono': _('Ingrese número de teléfono (099 - Movistar 098 - Claro)'),
+            'tipo': _('Ingrese tipo de número'),
+            'estudiante': _('Ingrese estudiante'),
+        }
+
 
 
 class NumeroTelefonicoEstudianteForm(ModelForm):
