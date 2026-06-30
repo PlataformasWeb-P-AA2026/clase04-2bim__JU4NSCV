@@ -5,13 +5,13 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
 
 # importar las clases de models.py
-from negocio.models import Chef, Plato, Restaurante
+from negocio.models import Chef, Plato, Restaurante, Comment
 
 # importar los formularios de forms.py
-from negocio.forms import RestauranteForm, ChefForm, PlatoForm
+from negocio.forms import RestauranteForm, ChefForm, PlatoForm, CommentForm
 
 def ingreso(request):
 
@@ -151,3 +151,27 @@ def ver_plato(request, id):
     informacion_template = {'objeto': plato}
     return render(request, 'ver_plato.html',
                   informacion_template)
+
+def ver_comment(request):
+    comentarios = Comment.objects.all()
+    informacion_template = {'comentarios': comentarios,
+                            'numero': len(comentarios)}
+    return render(request, 'listar_comment.html', informacion_template)
+
+@login_required(login_url='/entrando/login/')
+def crear_comment(request):
+    """
+    """
+    if request.method=='POST':
+        formulario = CommentForm(request.POST)
+        print(formulario.errors)
+        if formulario.is_valid():
+            comentario = formulario.save(commit=False)
+            comentario.username = request.user
+            comentario.save() 
+            return redirect(index)
+    else:
+        formulario = CommentForm()
+    diccionario = {'formulario': formulario}
+
+    return render(request, 'crear_comment.html', diccionario)

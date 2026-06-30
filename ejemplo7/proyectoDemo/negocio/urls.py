@@ -1,3 +1,4 @@
+from os import name
 from django.urls import path, include
 # se importa las vistas de la aplicación
 from negocio import views
@@ -27,4 +28,8 @@ urlpatterns = [
          name='ver_chef'),
         path('ver/plato/<int:id>', views.ver_plato,
          name='ver_plato'),
+        path('crear/comment', views.crear_comment,
+            name='crear_comment'),
+        path('ver/comentario', views.ver_comment,
+            name='ver_comment')
 ]

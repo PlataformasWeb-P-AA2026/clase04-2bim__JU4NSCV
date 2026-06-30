@@ -1,0 +1,44 @@
+{% extends "master.html" %}
+
+{% block title %}
+Listado de Platos
+{% endblock %}
+
+{% block content %}
+<h2>Listado de Comentarios
+    <a href="{% url 'crear_comment' %}">+</a>
+</h2>
+<h3>Número de comentarios {{ numero }}</h3>
+
+<table id="tabla_datos">
+
+    <thead>
+        <tr>
+            <th>Comentario</th>
+            <th>Username</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for e in comentarios %}
+        <tr>
+            <td> {{e.content}}</td>
+            <td> {{e.username}}</td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#tabla_datos').DataTable({
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
+            }
+        });
+    });
+
+
+</script>
+{% endblock %}
