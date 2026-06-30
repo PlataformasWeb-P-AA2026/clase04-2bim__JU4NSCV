@@ -134,3 +134,14 @@ def crear_numero_telefonico_estudiante(request, id):
     diccionario = {'formulario': formulario, 'estudiante': estudiante}
 
     return render(request, 'crearNumeroTelefonicoEstudiante.html', diccionario)
+
+def crear_comment(request):
+    if request.method == 'POST':
+        formulario = CommentForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(index)
+    else:
+        formulario = CommentForm()
+    diccionario = {'formulario': formulario}
+    return render(request, 'crearComment.html', diccionario)
